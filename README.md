@@ -40,8 +40,7 @@ You do not need to be a Lean 4 expert to use this tool! We have packaged it as a
 5. Click the `...` menu in the top right of the panel and select **"Install from VSIX..."**
 6. Select the downloaded `certior-plan-dap-client-0.1.0.vsix` file.
 
-## Quick Start (3-Minute Demo)
-
+## Quick Start
 1. Open the `CertiorPlan` folder in VS Code.
 2. Navigate to one of our pre-built examples: `examples/HIPAAIntegrationDemo.lean`
 3. Press `F5` to open the **Run and Debug** panel.
