@@ -18,10 +18,10 @@
 ---
 
 ## The Problem
-Autonomous AI agents are incredibly powerful, but they operate as **black boxes**. To deploy them in high-risk, high-compliance environments (Healthcare, Finance, Government), you cannot just blindly trust an LLM prompt. You need absolute, mathematically verifiable guarantees that an AI will not leak data, compromise security, or execute unauthorized code.
+Autonomous AI agents are powerful, but they operate as **black boxes**. To deploy them in high-risk, high-compliance environments (Healthcare, Finance, Government), you cannot just blindly trust an LLM prompt. You need absolute, mathematically verifiable guarantees that an AI will not leak data, compromise security, or execute unauthorized code.
 
 ## The Solution
-**Certior Debugger** is a groundbreaking IDE extension that uses mathematical theorem proving (via **Lean 4**) to formally verify AI execution plans *before* they run. It acts as an interactive debugger for your agent's logic. If an agent tries to pass a HIPAA-protected patient record to an unauthorized public API, Certior will mathematically prove that the flow is illegal and halt the execution.
+**Certior Debugger** is an IDE extension that uses mathematical theorem proving (via **Lean 4**) to formally verify AI execution plans *before* they run. It acts as an interactive debugger for your agent's logic. If an agent tries to pass a HIPAA-protected patient record to an unauthorized public API, Certior will mathematically prove that the flow is illegal and halt the execution.
 
 ## Features
 - **🔬 Mathematical Verification:** Uses the formal logic of Lean 4 to evaluate an agent's execution sequence.
@@ -49,4 +49,4 @@ You do not need to be a Lean 4 expert to use this tool! We have packaged it as a
    - *If the plan is safe*: You will receive a successful Proof Certificate.
    - *If the plan violates the lattice*: The debugger will isolate the exact node where the data leak occurred.
 
-This allows developers to securely audit AI behaviors locally, bridging the gap between cutting-edge LLMs and mission-critical enterprise compliance.
+This allows developers to securely audit AI behaviors locally, to address the gap between cutting-edge LLMs and mission-critical enterprise compliance.
