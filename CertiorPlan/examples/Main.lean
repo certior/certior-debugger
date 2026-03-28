@@ -53,7 +53,7 @@ def runBasic : String :=
     The flow checker should detect that Sensitive data cannot flow
     to a Public (external) channel.
 
-    This is the "aha moment" demo:
+    This demonstrates the core formal verification property:
     - Patient data is labeled @Sensitive
     - External email is labeled @Public
     - The proven lattice blocks the flow: rank(Sensitive)=2 > rank(Public)=0 -/
@@ -147,16 +147,16 @@ def runSox : String :=
 -- Evaluation results (compile-time checks)
 -- ═══════════════════════════════════════════════════════════════════════
 
--- These #eval! commands verify correctness at build time:
+-- These #eval commands verify correctness at build time:
 
-#eval! IO.println "═══ Example 1: Basic Plan ═══"
-#eval! IO.println (runBasic)
-#eval! IO.println ""
-#eval! IO.println "═══ Example 2: HIPAA Patient Query ═══"
-#eval! IO.println (runHipaa)
-#eval! IO.println ""
-#eval! IO.println "═══ Example 3: SOX Financial Audit ═══"
-#eval! IO.println (runSox)
+#eval IO.println "═══ Example 1: Basic Plan ═══"
+#eval IO.println (runBasic)
+#eval IO.println ""
+#eval IO.println "═══ Example 2: HIPAA Patient Query ═══"
+#eval IO.println (runHipaa)
+#eval IO.println ""
+#eval IO.println "═══ Example 3: SOX Financial Audit ═══"
+#eval IO.println (runSox)
 
 end examples
 
@@ -229,22 +229,22 @@ def soxDslPlan : PlanInfo := plan%[
 -- DSL example evaluation
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println ""
-#eval! IO.println "═══ Week A2: DSL-based Examples ═══"
-#eval! IO.println ""
-#eval! IO.println "═══ DSL Basic Plan ═══"
-#eval! IO.println (prettyRunResult basicDslPlan.plan)
-#eval! IO.println ""
-#eval! IO.println "═══ DSL HIPAA Plan ═══"
-#eval! IO.println (prettyRunResult hipaaDslPlan.plan)
-#eval! IO.println ""
-#eval! IO.println "═══ DSL SOX Plan ═══"
-#eval! IO.println (prettyRunResult soxDslPlan.plan)
-#eval! IO.println ""
-#eval! IO.println "═══ DSL Basic Plan — JSON Export ═══"
-#eval! IO.println (exportJson basicDslPlan)
-#eval! IO.println ""
-#eval! IO.println "═══ DSL Basic Plan — Validation ═══"
-#eval! IO.println (prettyValidation (validateDetailed basicDslPlan))
+#eval IO.println ""
+#eval IO.println "═══ Week A2: DSL-based Examples ═══"
+#eval IO.println ""
+#eval IO.println "═══ DSL Basic Plan ═══"
+#eval IO.println (prettyRunResult basicDslPlan.plan)
+#eval IO.println ""
+#eval IO.println "═══ DSL HIPAA Plan ═══"
+#eval IO.println (prettyRunResult hipaaDslPlan.plan)
+#eval IO.println ""
+#eval IO.println "═══ DSL SOX Plan ═══"
+#eval IO.println (prettyRunResult soxDslPlan.plan)
+#eval IO.println ""
+#eval IO.println "═══ DSL Basic Plan — JSON Export ═══"
+#eval IO.println (exportJson basicDslPlan)
+#eval IO.println ""
+#eval IO.println "═══ DSL Basic Plan — Validation ═══"
+#eval IO.println (prettyValidation (validateDetailed basicDslPlan))
 
 end examples.dsl

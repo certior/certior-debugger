@@ -1,4 +1,4 @@
-# Certior MVP — Phase B1: Core Debugger
+# Certior Debugger Architecture
 ## ImpLab-Adapted Verified Agent Plan Debugger with 4-Scope Encoding
 
 **Version**: Phase B (Debugger) — Week B1 Complete
@@ -10,7 +10,7 @@
 
 ## What This Release Delivers
 
-Phase B1 transforms CertiorPlan from an execution kernel into a **full interactive debugger** with verification-specific inspection capabilities. Adapted from ImpLab's battle-tested debugger architecture with three novel breakpoint types for security auditing.
+This module transforms CertiorPlan from an execution kernel into a **full interactive debugger** with verification-specific inspection capabilities. Adapted from ImpLab's battle-tested debugger architecture with three novel breakpoint types for security auditing.
 
 ### ✅ Session.lean — Debug Session with Verification Breakpoints (Mon–Tue)
 
@@ -114,8 +114,8 @@ Each stack frame exposes four scopes:
 ## Build & Test
 
 ```bash
-tar -xzf certior-mvp-phase-b1.tar.gz
-cd certior-mvp
+git clone https://github.com/certior/certior-debugger.git
+cd certior-debugger
 
 # Build (requires Lean4 + Lake)
 cd lean4/CertiorPlan && lake build

@@ -70,12 +70,12 @@ def runResult : String := prettyRunResult soxPlanInfo.plan
 
 def validationResult : ValidationReport := validateDetailed soxPlanInfo
 
-#eval! IO.println "═══ SOX Financial Audit ═══"
-#eval! IO.println runResult
-#eval! IO.println ""
-#eval! IO.println (prettyValidation validationResult)
-#eval! IO.println ""
-#eval! IO.println (prettyPlan soxPlanInfo)
+#eval IO.println "═══ SOX Financial Audit ═══"
+#eval IO.println runResult
+#eval IO.println ""
+#eval IO.println (prettyValidation validationResult)
+#eval IO.println ""
+#eval IO.println (prettyPlan soxPlanInfo)
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- Variant: SOX plan that completes (no approval needed for internal)
@@ -111,9 +111,9 @@ def soxInternalPlanInfo : PlanInfo := plan%[
 
 def runInternalResult : String := prettyRunResult soxInternalPlanInfo.plan
 
-#eval! IO.println ""
-#eval! IO.println "═══ SOX Internal-Only (completes) ═══"
-#eval! IO.println runInternalResult
+#eval IO.println ""
+#eval IO.println "═══ SOX Internal-Only (completes) ═══"
+#eval IO.println runInternalResult
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- Variant: SOX flow violation (Restricted → Public leak)
@@ -140,8 +140,8 @@ def soxLeakPlanInfo : PlanInfo := plan%[
 
 def runLeakResult : String := prettyRunResult soxLeakPlanInfo.plan
 
-#eval! IO.println ""
-#eval! IO.println "═══ SOX Data Leak (flow violation) ═══"
-#eval! IO.println runLeakResult
+#eval IO.println ""
+#eval IO.println "═══ SOX Data Leak (flow violation) ═══"
+#eval IO.println runLeakResult
 
 end examples.SOX

@@ -61,19 +61,19 @@ def jsonExport : String := exportJson basicPlanInfo
 def validationResult : ValidationReport := validateDetailed basicPlanInfo
 
 -- Compile-time checks
-#eval! IO.println "═══ Basic Plan ═══"
-#eval! IO.println runResult
-#eval! IO.println ""
-#eval! IO.println (prettyValidation validationResult)
+#eval IO.println "═══ Basic Plan ═══"
+#eval IO.println runResult
+#eval IO.println ""
+#eval IO.println (prettyValidation validationResult)
 
 -- Verify the plan is valid
-#eval! do
+#eval do
   match PlanInfo.validate basicPlanInfo with
   | .ok _ => IO.println "✓ Plan validation passed"
   | .error msg => IO.println s!"✗ Validation failed: {msg}"
 
 -- Verify step count matches located array
-#eval! do
+#eval do
   let info := basicPlanInfo
   IO.println s!"  Steps: {info.plan.totalStepCount}"
   IO.println s!"  Located: {info.located.size}"

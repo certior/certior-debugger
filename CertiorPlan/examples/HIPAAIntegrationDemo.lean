@@ -1,7 +1,7 @@
 /-
   CertiorPlan Integration Demo: HIPAA Patient Data Pipeline
 
-  This is the **flagship integration demo** for Certior MVP.
+  Provides a comprehensive pipeline demonstration of the formal checker in a healthcare setting.
   It demonstrates the complete pipeline:
 
     1. Author a verified plan in plan%[…] DSL
@@ -12,7 +12,7 @@
     6. Generate a compliance audit report
     7. Render in the ProofWidgets verification explorer
 
-  The "aha moment": a compliance officer can step through the debugger
+  A compliance officer can step through the formally verified logic using the DAP debugger
   and see the **mathematical proof** that patient data cannot leak.
 
   Use in VS Code:
@@ -85,32 +85,32 @@ def patientPipeline : PlanInfo := plan%[
 -- §2  Execution — verified kernel catches the violation
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "╔═══════════════════════════════════════════════════════════╗"
-#eval! IO.println "║    CERTIOR INTEGRATION DEMO: HIPAA Patient Pipeline      ║"
-#eval! IO.println "╚═══════════════════════════════════════════════════════════╝"
-#eval! IO.println ""
+#eval IO.println "╔═══════════════════════════════════════════════════════════╗"
+#eval IO.println "║    CERTIOR INTEGRATION DEMO: HIPAA Patient Pipeline      ║"
+#eval IO.println "╚═══════════════════════════════════════════════════════════╝"
+#eval IO.println ""
 
-#eval! IO.println "── Step 1: Execute the plan ──────────────────────────────"
-#eval! IO.println (prettyRunResult patientPipeline.plan)
-#eval! IO.println ""
+#eval IO.println "── Step 1: Execute the plan ──────────────────────────────"
+#eval IO.println (prettyRunResult patientPipeline.plan)
+#eval IO.println ""
 
-#eval! IO.println "── Step 2: Detailed validation ──────────────────────────"
-#eval! IO.println (prettyValidation (validateDetailed patientPipeline))
-#eval! IO.println ""
+#eval IO.println "── Step 2: Detailed validation ──────────────────────────"
+#eval IO.println (prettyValidation (validateDetailed patientPipeline))
+#eval IO.println ""
 
-#eval! IO.println "── Step 3: Plan structure ───────────────────────────────"
-#eval! IO.println (prettyPlan patientPipeline)
-#eval! IO.println ""
+#eval IO.println "── Step 3: Plan structure ───────────────────────────────"
+#eval IO.println (prettyPlan patientPipeline)
+#eval IO.println ""
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- §3  JSON Roundtrip — proves Python bridge compatibility
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "── Step 4: JSON export ──────────────────────────────────"
-#eval! IO.println (exportJsonCompact patientPipeline)
-#eval! IO.println ""
+#eval IO.println "── Step 4: JSON export ──────────────────────────────────"
+#eval IO.println (exportJsonCompact patientPipeline)
+#eval IO.println ""
 
-#eval! do
+#eval do
   IO.println "── Step 5: JSON roundtrip validation ─────────────────────"
   let exported := exportJson patientPipeline
   match importAndValidateJson exported with
@@ -141,9 +141,9 @@ def patientPipeline : PlanInfo := plan%[
 -- §4  Compliance Report — what regulators see
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "── Step 6: Compliance audit report ───────────────────────"
-#eval! IO.println (exportReport patientPipeline)
-#eval! IO.println ""
+#eval IO.println "── Step 6: Compliance audit report ───────────────────────"
+#eval IO.println (exportReport patientPipeline)
+#eval IO.println ""
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- §5  The Fix — demonstrate correct plan (internal-only channel)
@@ -184,11 +184,11 @@ def patientPipelineFixed : PlanInfo := plan%[
   }
 ]
 
-#eval! IO.println "── Step 7: Fixed plan (redact before output) ─────────────"
-#eval! IO.println (prettyRunResult patientPipelineFixed.plan)
-#eval! IO.println ""
+#eval IO.println "── Step 7: Fixed plan (redact before output) ─────────────"
+#eval IO.println (prettyRunResult patientPipelineFixed.plan)
+#eval IO.println ""
 
-#eval! do
+#eval do
   IO.println "── Step 8: Fixed plan compliance report ──────────────────"
   let report := generateReport patientPipelineFixed
   if report.validation.valid then
@@ -227,15 +227,15 @@ def brokenWidgetProps : CertiorPlan.WidgetInitProps := { planInfo := patientPipe
 -- §7  Summary
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "╔═══════════════════════════════════════════════════════════╗"
-#eval! IO.println "║                    DEMO COMPLETE                         ║"
-#eval! IO.println "╠═══════════════════════════════════════════════════════════╣"
-#eval! IO.println "║  ✓ Plan authored in DSL                                  ║"
-#eval! IO.println "║  ✓ Verified execution detected flow violation            ║"
-#eval! IO.println "║  ✓ JSON roundtrip is lossless                            ║"
-#eval! IO.println "║  ✓ Compliance audit report generated                     ║"
-#eval! IO.println "║  ✓ Fixed plan executes cleanly                           ║"
-#eval! IO.println "║  ✓ Widget available in VS Code infoview                  ║"
-#eval! IO.println "╚═══════════════════════════════════════════════════════════╝"
+#eval IO.println "╔═══════════════════════════════════════════════════════════╗"
+#eval IO.println "║                    DEMO COMPLETE                         ║"
+#eval IO.println "╠═══════════════════════════════════════════════════════════╣"
+#eval IO.println "║  ✓ Plan authored in DSL                                  ║"
+#eval IO.println "║  ✓ Verified execution detected flow violation            ║"
+#eval IO.println "║  ✓ JSON roundtrip is lossless                            ║"
+#eval IO.println "║  ✓ Compliance audit report generated                     ║"
+#eval IO.println "║  ✓ Fixed plan executes cleanly                           ║"
+#eval IO.println "║  ✓ Widget available in VS Code infoview                  ║"
+#eval IO.println "╚═══════════════════════════════════════════════════════════╝"
 
 end Demo.HIPAA.Integration

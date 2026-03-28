@@ -7,7 +7,7 @@
   - Flow violation: Sensitive → Public BLOCKED by proven lattice
   - Proof: rank(Sensitive)=2 > rank(Public)=0
 
-  This is the "aha moment" demo — the proven lattice prevents
+  This demonstrates how the proven lattice prevents
   Protected Health Information from leaking to external channels.
 
   Expected: FLOW VIOLATION error at step 3 (sendEmail invocation).
@@ -77,12 +77,12 @@ def runResult : String := prettyRunResult hipaaPlanInfo.plan
 def validationResult : ValidationReport := validateDetailed hipaaPlanInfo
 
 -- Compile-time execution — shows the flow violation
-#eval! IO.println "═══ HIPAA Patient Query ═══"
-#eval! IO.println runResult
-#eval! IO.println ""
-#eval! IO.println (prettyValidation validationResult)
-#eval! IO.println ""
-#eval! IO.println (prettyPlan hipaaPlanInfo)
+#eval IO.println "═══ HIPAA Patient Query ═══"
+#eval IO.println runResult
+#eval IO.println ""
+#eval IO.println (prettyValidation validationResult)
+#eval IO.println ""
+#eval IO.println (prettyPlan hipaaPlanInfo)
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- Demonstrate the fix: with proper flow labels
@@ -121,7 +121,7 @@ def hipaaFixedPlanInfo : PlanInfo := plan%[
 
 def runFixedResult : String := prettyRunResult hipaaFixedPlanInfo.plan
 
-#eval! IO.println "═══ HIPAA Fixed Plan (internal-only) ═══"
-#eval! IO.println runFixedResult
+#eval IO.println "═══ HIPAA Fixed Plan (internal-only) ═══"
+#eval IO.println runFixedResult
 
 end examples.HIPAA

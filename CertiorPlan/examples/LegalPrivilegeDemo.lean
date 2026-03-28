@@ -102,24 +102,24 @@ def correctWorkflow : PlanInfo := plan%[
 -- §3  Execution and Validation
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "╔═══════════════════════════════════════════════════════════╗"
-#eval! IO.println "║    CERTIOR INTEGRATION DEMO: Legal Privilege             ║"
-#eval! IO.println "╚═══════════════════════════════════════════════════════════╝"
-#eval! IO.println ""
+#eval IO.println "╔═══════════════════════════════════════════════════════════╗"
+#eval IO.println "║    CERTIOR INTEGRATION DEMO: Legal Privilege             ║"
+#eval IO.println "╚═══════════════════════════════════════════════════════════╝"
+#eval IO.println ""
 
-#eval! IO.println "── Scenario A: Privilege waiver (BLOCKED) ────────────────"
-#eval! IO.println (prettyRunResult privilegeWaiver.plan)
-#eval! IO.println ""
+#eval IO.println "── Scenario A: Privilege waiver (BLOCKED) ────────────────"
+#eval IO.println (prettyRunResult privilegeWaiver.plan)
+#eval IO.println ""
 
-#eval! IO.println "── Scenario B: Correct workflow (approval required) ──────"
-#eval! IO.println (prettyRunResult correctWorkflow.plan)
-#eval! IO.println ""
+#eval IO.println "── Scenario B: Correct workflow (approval required) ──────"
+#eval IO.println (prettyRunResult correctWorkflow.plan)
+#eval IO.println ""
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- §4  JSON Roundtrip + Compliance Reports
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! do
+#eval do
   IO.println "── JSON roundtrip tests ─────────────────────────────────"
   for (name, plan) in [("privilegeWaiver", privilegeWaiver), ("correctWorkflow", correctWorkflow)] do
     let exported := exportJson plan
@@ -130,7 +130,7 @@ def correctWorkflow : PlanInfo := plan%[
       else IO.println s!"  ✗ {name}: content changed"
     | .error msg => IO.println s!"  ✗ {name}: {msg}"
 
-#eval! do
+#eval do
   IO.println ""
   IO.println "── Compliance report: privilege waiver ───────────────────"
   let report := generateReport privilegeWaiver
@@ -146,14 +146,14 @@ def correctWorkflow : PlanInfo := plan%[
 def privilegeWidgetProps : CertiorPlan.WidgetInitProps := { planInfo := privilegeWaiver }
 -- #widget CertiorPlan.verificationExplorerWidget privilegeWidgetProps
 
-#eval! IO.println ""
-#eval! IO.println "╔═══════════════════════════════════════════════════════════╗"
-#eval! IO.println "║               LEGAL PRIVILEGE DEMO COMPLETE              ║"
-#eval! IO.println "╠═══════════════════════════════════════════════════════════╣"
-#eval! IO.println "║  ✓ Privilege waiver prevented by proven lattice          ║"
-#eval! IO.println "║  ✓ Correct workflow requires partner approval            ║"
-#eval! IO.println "║  ✓ JSON roundtrip verified                               ║"
-#eval! IO.println "║  ✓ Widget shows PRIVILEGED tags                          ║"
-#eval! IO.println "╚═══════════════════════════════════════════════════════════╝"
+#eval IO.println ""
+#eval IO.println "╔═══════════════════════════════════════════════════════════╗"
+#eval IO.println "║               LEGAL PRIVILEGE DEMO COMPLETE              ║"
+#eval IO.println "╠═══════════════════════════════════════════════════════════╣"
+#eval IO.println "║  ✓ Privilege waiver prevented by proven lattice          ║"
+#eval IO.println "║  ✓ Correct workflow requires partner approval            ║"
+#eval IO.println "║  ✓ JSON roundtrip verified                               ║"
+#eval IO.println "║  ✓ Widget shows PRIVILEGED tags                          ║"
+#eval IO.println "╚═══════════════════════════════════════════════════════════╝"
 
 end Demo.Legal.Integration

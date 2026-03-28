@@ -80,7 +80,7 @@ def earningsReview : PlanInfo := plan%[
     The agent attempts to publish earnings data on a public channel.
     The lattice blocks this: rank(Restricted)=3 > rank(Public)=0.
 
-    This is the SOX equivalent of the HIPAA demo's "aha moment":
+    This demonstrates the formal verification of cross-boundary financial flows:
     the mathematical proof prevents MNPI from leaking before the
     earnings are officially released.
 -/
@@ -142,30 +142,30 @@ def earningsCompliant : PlanInfo := plan%[
 -- §4  Execution and Validation
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "╔═══════════════════════════════════════════════════════════╗"
-#eval! IO.println "║    CERTIOR INTEGRATION DEMO: SOX Financial Audit         ║"
-#eval! IO.println "╚═══════════════════════════════════════════════════════════╝"
-#eval! IO.println ""
+#eval IO.println "╔═══════════════════════════════════════════════════════════╗"
+#eval IO.println "║    CERTIOR INTEGRATION DEMO: SOX Financial Audit         ║"
+#eval IO.println "╚═══════════════════════════════════════════════════════════╝"
+#eval IO.println ""
 
-#eval! IO.println "── Scenario A: Earnings with approval workflow ───────────"
-#eval! IO.println (prettyRunResult earningsReview.plan)
-#eval! IO.println ""
-#eval! IO.println (prettyValidation (validateDetailed earningsReview))
-#eval! IO.println ""
+#eval IO.println "── Scenario A: Earnings with approval workflow ───────────"
+#eval IO.println (prettyRunResult earningsReview.plan)
+#eval IO.println ""
+#eval IO.println (prettyValidation (validateDetailed earningsReview))
+#eval IO.println ""
 
-#eval! IO.println "── Scenario B: Earnings LEAK (Restricted → Public) ───────"
-#eval! IO.println (prettyRunResult earningsLeak.plan)
-#eval! IO.println ""
+#eval IO.println "── Scenario B: Earnings LEAK (Restricted → Public) ───────"
+#eval IO.println (prettyRunResult earningsLeak.plan)
+#eval IO.println ""
 
-#eval! IO.println "── Scenario C: Compliant pipeline (internal-only) ────────"
-#eval! IO.println (prettyRunResult earningsCompliant.plan)
-#eval! IO.println ""
+#eval IO.println "── Scenario C: Compliant pipeline (internal-only) ────────"
+#eval IO.println (prettyRunResult earningsCompliant.plan)
+#eval IO.println ""
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- §5  JSON Roundtrip Verification
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! do
+#eval do
   IO.println "── JSON roundtrip tests ─────────────────────────────────"
   for (name, plan) in [
     ("earningsReview", earningsReview),
@@ -188,7 +188,7 @@ def earningsCompliant : PlanInfo := plan%[
 -- §6  Compliance Reports
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! do
+#eval do
   IO.println "── Compliance audit reports ─────────────────────────────"
   let leakReport := generateReport earningsLeak
   IO.println s!"  Leak scenario:"
@@ -209,7 +209,7 @@ def earningsCompliant : PlanInfo := plan%[
 -- §7  Budget Analysis
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! do
+#eval do
   IO.println "── Budget analysis ─────────────────────────────────────"
   IO.println s!"  earningsReview budget:   {earningsReview.plan.totalBudgetCents}¢"
   IO.println s!"  earningsLeak budget:     {earningsLeak.plan.totalBudgetCents}¢"
@@ -237,15 +237,15 @@ def soxWidgetProps : CertiorPlan.WidgetInitProps := { planInfo := earningsLeak }
 -- §9  Summary
 -- ═══════════════════════════════════════════════════════════════════════
 
-#eval! IO.println "╔═══════════════════════════════════════════════════════════╗"
-#eval! IO.println "║                    SOX DEMO COMPLETE                     ║"
-#eval! IO.println "╠═══════════════════════════════════════════════════════════╣"
-#eval! IO.println "║  ✓ Approval workflow halts execution for review          ║"
-#eval! IO.println "║  ✓ MNPI leak detected and blocked by lattice            ║"
-#eval! IO.println "║  ✓ Compliant pipeline executes with certificates        ║"
-#eval! IO.println "║  ✓ JSON roundtrip verified for all scenarios            ║"
-#eval! IO.println "║  ✓ Budget accounting tracks per-skill costs             ║"
-#eval! IO.println "║  ✓ Widget available in VS Code infoview                 ║"
-#eval! IO.println "╚═══════════════════════════════════════════════════════════╝"
+#eval IO.println "╔═══════════════════════════════════════════════════════════╗"
+#eval IO.println "║                    SOX DEMO COMPLETE                     ║"
+#eval IO.println "╠═══════════════════════════════════════════════════════════╣"
+#eval IO.println "║  ✓ Approval workflow halts execution for review          ║"
+#eval IO.println "║  ✓ MNPI leak detected and blocked by lattice            ║"
+#eval IO.println "║  ✓ Compliant pipeline executes with certificates        ║"
+#eval IO.println "║  ✓ JSON roundtrip verified for all scenarios            ║"
+#eval IO.println "║  ✓ Budget accounting tracks per-skill costs             ║"
+#eval IO.println "║  ✓ Widget available in VS Code infoview                 ║"
+#eval IO.println "╚═══════════════════════════════════════════════════════════╝"
 
 end Demo.SOX.Integration
